@@ -5,6 +5,7 @@ public class Parameter implements Element {
 	private String defaultValue;
 	private String description;
 	private String type;
+	private String qualifiedType;
 	private boolean required;
 
 	public String getName() {
@@ -47,11 +48,20 @@ public class Parameter implements Element {
 		this.type = type;
 	}
 
+	public String getQualifiedType() {
+		return qualifiedType;
+	}
+
+	public void setQualifiedType(String qualifiedType) {
+		this.qualifiedType = qualifiedType;
+	}
+
 	@Override
 	public String toString() {
 		return "Parameter [name=" + name + ", defaultValue=" + defaultValue
 				+ ", description=" + description + ", type=" + type
-				+ ", required=" + required + "]";
+				+ ", qualifiedType=" + qualifiedType + ", required=" + required
+				+ "]";
 	}
 
 	

@@ -4,10 +4,13 @@ import java.util.List;
 
 public class Class implements Element {
 	private String name;
+	private String qualifiedName;
 	private String module;
 	private String mapping = "";
 	private boolean controller;
 	private boolean webService;
+	
+	private List<Parameter> members;
 	
 	private List<String> endpoints;
 	private List<String> requestMethods;
@@ -77,11 +80,29 @@ public class Class implements Element {
 		this.module = module;
 	}
 
+	public List<Parameter> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<Parameter> members) {
+		this.members = members;
+	}
+
+	public String getQualifiedName() {
+		return qualifiedName;
+	}
+
+	public void setQualifiedName(String qualifiedName) {
+		this.qualifiedName = qualifiedName;
+	}
+
 	@Override
 	public String toString() {
-		return "Class [name=" + name + ", module=" + module + ", mapping="
-				+ mapping + ", controller=" + controller + ", webService="
-				+ webService + ", endpoints=" + endpoints + ", requestMethods="
+		return "Class [name=" + name + ", qualifiedName=" + qualifiedName
+				+ ", module=" + module + ", mapping=" + mapping
+				+ ", controller=" + controller 
+				+ ", webService=" + webService + ", members=" + members
+				+ ", endpoints=" + endpoints + ", requestMethods="
 				+ requestMethods + ", handlers=" + handlers + "]";
 	}
 }

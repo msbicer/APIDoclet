@@ -5,22 +5,34 @@ import java.util.List;
 
 import com.apidoclet.model.Class;
 import com.apidoclet.model.Method;
+import com.apidoclet.model.Parameter;
 import com.apidoclet.model.RequestMapping;
 import com.apidoclet.util.BuilderUtils;
 import com.sun.javadoc.AnnotationDesc;
 import com.sun.javadoc.AnnotationTypeDoc;
 import com.sun.javadoc.ClassDoc;
+import com.sun.javadoc.FieldDoc;
 import com.sun.javadoc.MethodDoc;
 import com.sun.javadoc.Tag;
 
 public class ClassBuilder {
 	public static Class build(ClassDoc classDoc) {
-		com.apidoclet.model.Class klazz = new Class();
+		Class klazz = new Class();
 
 		klazz.setName(classDoc.name());
+		klazz.setQualifiedName(classDoc.qualifiedName());
 		klazz.setController(false);
 		klazz.setWebService(false);
 		klazz.setEndpoints(new ArrayList<String>());
+		
+		//collect members
+		FieldDoc[] fields = classDoc.fields();
+		List<Parameter> params = new ArrayList<Parameter>();
+		for (FieldDoc field:fields){
+			Parameter param = ParameterBuilder.build(field);
+			params.add(param);
+		}
+		klazz.setMembers(params);
 
 		// evaluate javadoc tags
 		Tag[] tags = classDoc.tags();
@@ -50,12 +62,9 @@ public class ClassBuilder {
 			}
 		}
 
-		System.out.println(klazz);
-
 		if (klazz.isController()) {
 			List<Method> methodList = new ArrayList<Method>();
 			MethodDoc[] methods = classDoc.methods();
-			System.out.println("\n" + klazz.getName() + "\n");
 			for (int i = 0; i < methods.length; i++) {
 				Method method = MethodBuilder.build(methods[i], klazz);
 				if (method != null) {
@@ -69,10 +78,7 @@ public class ClassBuilder {
 				}
 			}
 			klazz.setHandlers(methodList);
-
-			return klazz;
-		} else {
-			return null;
 		}
+		return klazz;
 	}
 }

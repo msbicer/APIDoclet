@@ -91,6 +91,7 @@
 	  		<ul><a href="#handler-GetMovie">GetMovie</a></ul>
 	  		<ul><a href="#handler-listMovies">listMovies</a></ul>
 	  		<ul><a href="#handler-get">get</a></ul>
+	  		<ul><a href="#handler-post">post</a></ul>
 	  
   </div>
   
@@ -129,37 +130,37 @@
 	  				</tr>
 	  				<tr>
 	  					<td>name</td>
-	  					<td>String</td>
+	  						<td><a href="#model-com.model.Movie">Movie</a></td>
 	  					<td>Y</td>
 	  					<td>Name of movie</td>
 	  				</tr>
 	  				<tr>
 	  					<td>testParam1</td>
-	  					<td>String</td>
+	  						<td>String</td>
 	  					<td>Y</td>
 	  					<td></td>
 	  				</tr>
 	  				<tr>
 	  					<td>test2</td>
-	  					<td>Boolean</td>
+	  						<td>Boolean</td>
 	  					<td>Y</td>
 	  					<td></td>
 	  				</tr>
 	  				<tr>
 	  					<td>test3</td>
-	  					<td>Integer</td>
+	  						<td>Integer</td>
 	  					<td>Y</td>
 	  					<td></td>
 	  				</tr>
 	  				<tr>
 	  					<td>test4</td>
-	  					<td>String</td>
+	  						<td>String</td>
 	  					<td>Y</td>
 	  					<td></td>
 	  				</tr>
 	  				<tr>
 	  					<td>query</td>
-	  					<td>String</td>
+	  						<td>String</td>
 	  					<td>N</td>
 	  					<td>Query String</td>
 	  				</tr>
@@ -175,7 +176,7 @@
 	  				<td class="header">Description</td>
 	  			</tr>
 	  			<tr>
-	  				<td>String</td>
+  						<td><a href="#model-com.model.Movie">Movie</a></td>
 	  				<td></td>
 	  			</tr>
 	  			<tr>
@@ -220,20 +221,20 @@
 	  				<td class="header">Description</td>
 	  			</tr>
 	  			<tr>
-	  				<td>String</td>
+		  				<td>String</td>
 	  				<td>Test value</td>
 	  			</tr>
 	  			<tr>
 	  				<td class="header">Request Example</td>
-	  				<td><a href="javascript:void(0)">http://turkcellmuzik.com/hafifmuzik/mobile/artist/info/id/1234</a></td>
+	  				<td><a href="javascript:void(0)">http://example.com/info/id/1234</a></td>
 	  			</tr>
 	  			<tr>
 	  				<td class="header">Response Example</td>
 	  				<td><pre>{
   result: {
     id: 1737
-    imagePath: http://turkcellmuzik.com/hafifmuzik-static/artistimages/[size]/Rm/Vy/RmVyZGkgw5Z6YmXEn2Vu.jpg
-    name: "Artist ismi"
+    imagePath: http://example.com/images/[size]/Rm/Vy/RmVyZGkgw5Z6YmXEn2Vu.jpg
+    name: "Info name"
   }
 }</pre></td>
 	  			</tr>
@@ -272,7 +273,7 @@
 	  				</tr>
 	  				<tr>
 	  					<td>id</td>
-	  					<td>Long</td>
+	  						<td>Long</td>
 	  					<td>Y</td>
 	  					<td></td>
 	  				</tr>
@@ -288,7 +289,52 @@
 	  				<td class="header">Description</td>
 	  			</tr>
 	  			<tr>
-	  				<td>ModelAndView</td>
+		  				<td>ModelAndView</td>
+	  				<td></td>
+	  			</tr>
+	  			<tr>
+	  				<td class="header">Request Example</td>
+	  				<td><a href="javascript:void(0)"></a></td>
+	  			</tr>
+	  			<tr>
+	  				<td class="header">Response Example</td>
+	  				<td><pre></pre></td>
+	  			</tr>
+	  			</table>
+	  		</div>
+	  		<div class="paragraph chapter" id="handler-post">
+	  			<table class="table" width="100%">
+	  				<tr>
+	  					<td width="33%" class="header">Function Name</td>
+	  					<td>post</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="header">Endpoint</td>
+	  					<td>	/movie/post<br/>/movie2/post
+</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="header">Description</td>
+	  					<td></td>
+	  				</tr>
+	  				<tr>
+	  					<td class="header">Method</td>
+	  					<td>	GET<br/>POST
+</td>
+	  				</tr>
+	  			</table>
+	  			<table class="table" width="100%">
+	  			<tr>
+	  				<td class="header" colspan="2">
+	  				Response
+	  				</td>
+	  			</tr>
+	  			<tr>
+	  				<td width="33%" class="header">Type</td>
+	  				<td class="header">Description</td>
+	  			</tr>
+	  			<tr>
+		  				<td>void</td>
 	  				<td></td>
 	  			</tr>
 	  			<tr>
@@ -302,6 +348,30 @@
 	  			</table>
 	  		</div>
 	  <div style="page-break-after:avoid;page-break-before:avoid"></div>
+  </div>
+  <div class="newpage">
+	  <h1>Models</h1>
+	  	
+	  	<h2 class="chapter" id="model-com.model.Movie">Movie</h2>
+	  	
+		<table class="table" width="100%">
+			<tr>
+				<td width="25%" class="header">Name</td>
+				<td width="25%" class="header">Type</td>
+				<td width="50%" class="header">Description</td>
+			</tr>
+			<tr>
+				<td>name</td>
+				<td>String</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>year</td>
+				<td>int</td>
+				<td></td>
+			</tr>
+		</table>
+	  	
   </div>
 </body>
 </html>  

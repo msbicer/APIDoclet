@@ -8,7 +8,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -17,9 +16,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
-import com.apidoclet.model.Class;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Paragraph;
+import com.apidoclet.model.Result;
 import com.itextpdf.text.pdf.BaseFont;
 
 import freemarker.template.Configuration;
@@ -27,13 +24,13 @@ import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
 
 public class FreemarkerOutput {
-	private List<Class> classes;
+	private Result result;
 
 	private String fileName;
 
-	public FreemarkerOutput(String fileName, List<Class> classes)
+	public FreemarkerOutput(String fileName, Result result)
 			throws Exception {
-		this.classes = classes;
+		this.result = result;
 		this.fileName = fileName;
 		
 	}
@@ -57,7 +54,8 @@ public class FreemarkerOutput {
 	        /* Create a data-model */
 	        Map root = new HashMap();
 	        
-	        root.put("classes", classes);
+	        root.put("classes", result.getClasses());
+	        root.put("models", result.getModels());
 
 	        /* Merge data-model with template */
 	        ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -71,10 +69,10 @@ public class FreemarkerOutput {
 			ITextRenderer renderer = new ITextRenderer();
 			
 //			
-			System.out.println("==> "+FreemarkerOutput.class.getClassLoader().getResource("resources/fonts/").getFile());
+//			System.out.println("==> "+FreemarkerOutput.class.getClassLoader().getResource("resources/fonts/").getFile());
 			File dir = new File(FreemarkerOutput.class.getClassLoader().getResource("resources/fonts/").getFile());
-			System.out.println("1 ==> "+dir);
-			System.out.println("2 ==> "+dir.listFiles());
+//			System.out.println("1 ==> "+dir);
+//			System.out.println("2 ==> "+dir.listFiles());
 			for (File font:dir.listFiles()){
 				renderer.getFontResolver().addFont(
 						font.getCanonicalPath(), BaseFont.IDENTITY_H,

@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
@@ -91,6 +89,11 @@ public class APIDocletTest {
 			}
 			rootDoc.options();
 			APIDoclet.start(rootDoc);
+			
+//			Iterator<String> it = Model.map.keySet().iterator();
+//			while (it.hasNext()){
+//				log.debug("==> "+Model.map.get(it.next()));
+//			}
 		}
 	}
 	

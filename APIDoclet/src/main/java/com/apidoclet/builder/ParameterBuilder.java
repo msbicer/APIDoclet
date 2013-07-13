@@ -3,14 +3,26 @@ package com.apidoclet.builder;
 import com.sun.javadoc.AnnotationDesc;
 import com.sun.javadoc.AnnotationDesc.ElementValuePair;
 import com.sun.javadoc.AnnotationTypeDoc;
+import com.sun.javadoc.FieldDoc;
 import com.sun.javadoc.ParamTag;
 import com.sun.javadoc.Parameter;
 
 public class ParameterBuilder {
+	
+	public static com.apidoclet.model.Parameter build(FieldDoc field){
+		com.apidoclet.model.Parameter param = new com.apidoclet.model.Parameter();
+		param.setName(field.name());
+		param.setType(field.type().simpleTypeName());
+		param.setQualifiedType(field.type().qualifiedTypeName());
+		param.setDescription(field.commentText());
+		return param;
+	}
+	
 	public static com.apidoclet.model.Parameter build(Parameter param, ParamTag tag){
 		com.apidoclet.model.Parameter parameter = new com.apidoclet.model.Parameter();
 		
 		parameter.setType(param.typeName());
+		parameter.setQualifiedType(param.type().qualifiedTypeName());
 		if (tag!=null){
 			parameter.setDescription(tag.parameterComment());
 		}
@@ -48,7 +60,6 @@ public class ParameterBuilder {
 		}
 		
 		if (isRequestParameter){
-			System.out.println(parameter);
 			return parameter;
 		} else {
 			return null;

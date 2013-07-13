@@ -10,7 +10,7 @@
 	</appender>
 	<appender name="TEST_LOG_APPENDER" class="org.apache.log4j.RollingFileAppender">
 		<!-- The active file to log to -->
-		<param name="file" value="/home/sbicer/logs/apidoclet/info.log" />
+		<param name="file" value="/Users/sbicer/logs/apidoclet/info.log" />
 		<param name="append" value="true" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d %t %-5p %c{1} [%X{version}][%X{userId}][%X{msisdn}][%X{openId}]- %m%n" />

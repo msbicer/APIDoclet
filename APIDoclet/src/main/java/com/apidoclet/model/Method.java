@@ -6,6 +6,7 @@ public class Method implements Element {
 	private String name;
 	private String responseName;
 	private String responseType;
+	private String qualifiedResponseType;
 	private String responseDescription;
 	private String description;
 
@@ -96,10 +97,19 @@ public class Method implements Element {
 		this.responseExample = responseExample;
 	}
 
+	public String getQualifiedResponseType() {
+		return qualifiedResponseType;
+	}
+
+	public void setQualifiedResponseType(String qualifiedResponseType) {
+		this.qualifiedResponseType = qualifiedResponseType;
+	}
+
 	@Override
 	public String toString() {
 		return "Method [name=" + name + ", responseName=" + responseName
-				+ ", responseType=" + responseType + ", responseDescription="
+				+ ", responseType=" + responseType + ", qualifiedResponseType="
+				+ qualifiedResponseType + ", responseDescription="
 				+ responseDescription + ", description=" + description
 				+ ", endpoints=" + endpoints + ", methods=" + methods
 				+ ", parameters=" + parameters + ", requestExample="

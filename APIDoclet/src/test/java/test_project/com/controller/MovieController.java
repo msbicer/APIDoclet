@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.model.Movie;
 /**
  * @module Movie
  * @author sbicer
@@ -25,7 +28,7 @@ public class MovieController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
-	public String getMovie(@PathVariable String name,
+	public Movie getMovie(@PathVariable Movie name,
 			@PathVariable String testParam1,
 			@PathVariable("test2") Boolean testParam2,
 			@PathVariable(value="test3") Integer testParam3,
@@ -33,19 +36,23 @@ public class MovieController {
 			@RequestParam(required = true, defaultValue="test") String query, ModelMap model) {
 
 		model.addAttribute("movie", name);
-		return "list";
+		
+		Movie val = new Movie();
+		val.setName("list");
+		
+		return val;
 
 	}
 	/**
 	 * Lists movies
 	 * @return Test value
-	 * @requestExample http://turkcellmuzik.com/hafifmuzik/mobile/artist/info/id/1234
+	 * @requestExample http://example.com/info/id/1234
 	 * @responseExample 
 {
   result: {
     id: 1737
-    imagePath: http://turkcellmuzik.com/hafifmuzik-static/artistimages/[size]/Rm/Vy/RmVyZGkgw5Z6YmXEn2Vu.jpg
-    name: "Artist ismi"
+    imagePath: http://example.com/images/[size]/Rm/Vy/RmVyZGkgw5Z6YmXEn2Vu.jpg
+    name: "Info name"
   }
 }
 	 */
@@ -61,6 +68,10 @@ public class MovieController {
 	@RequestMapping(value="get")
 	public ModelAndView getModelAndView(@RequestParam Long id){
 		return null;
+	}
+	
+	@RequestMapping(value="post")
+	public void post(){
 	}
 	
 	public void dummy(){

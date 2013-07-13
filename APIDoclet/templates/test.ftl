@@ -134,7 +134,11 @@
 	  				<#list handler.parameters as param>
 	  				<tr>
 	  					<td>${param.name}</td>
-	  					<td>${param.type}</td>
+	  					<#if models[param.qualifiedType]??>
+	  						<td><a href="#model-${param.qualifiedType}">${param.type}</a></td>
+	  					<#else>
+	  						<td>${param.type}</td>
+	  					</#if>
 	  					<td><#if param.required>Y<#else>N</#if></td>
 	  					<td>${param.description!""}</td>
 	  				</tr>
@@ -152,7 +156,11 @@
 	  				<td class="header">Description</td>
 	  			</tr>
 	  			<tr>
-	  				<td>${handler.responseType!""}</td>
+	  				<#if handler.responseType?? && models[handler.qualifiedResponseType]??>
+  						<td><a href="#model-${handler.qualifiedResponseType}">${handler.responseType}</a></td>
+  					<#else>
+		  				<td>${handler.responseType!""}</td>
+  					</#if>
 	  				<td>${handler.responseDescription!""}</td>
 	  			</tr>
 	  			<tr>
@@ -168,6 +176,32 @@
 	  	</#list>
 	  </#list>
 	  <div style="page-break-after:avoid;page-break-before:avoid"></div>
+  </div>
+  <div class="newpage">
+	  <h1>Models</h1>
+	  <#list models?keys as key>
+	  	<#assign model=models[key] />
+	  	
+	  	<h2 class="chapter" id="model-${model.qualifiedName}">${model.name}</h2>
+	  	
+	  	<#if model.members?? && model.members?size&gt;0>
+		<table class="table" width="100%">
+			<tr>
+				<td width="25%" class="header">Name</td>
+				<td width="25%" class="header">Type</td>
+				<td width="50%" class="header">Description</td>
+			</tr>
+			<#list model.members as member>
+			<tr>
+				<td>${member.name}</td>
+				<td>${member.type}</td>
+				<td>${member.description!""}</td>
+			</tr>
+			</#list>
+		</table>
+		</#if>
+	  	
+	  </#list>
   </div>
 </body>
 </html>  
