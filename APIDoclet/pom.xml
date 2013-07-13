@@ -11,13 +11,39 @@
 		<org.springframework.version>3.1.0.RELEASE</org.springframework.version>
 		<output>/home/sbicer/Desktop</output>
 	</properties>
+	
+	<profiles>
+    <profile>
+      <id>windows_profile</id>
+      <activation>
+        <os>
+          <family>Windows</family>
+        </os>
+      </activation>
+      <properties>
+        <toolsjar>${java.home}/../lib/tools.jar</toolsjar>
+      </properties>
+    </profile>
+    <profile>
+      <id>osx_profile</id>
+      <activation>
+        <os>
+          <family>mac</family>
+        </os>
+      </activation>
+      <properties>
+        <toolsjar>${java.home}/../Classes/classes.jar</toolsjar>
+      </properties>
+    </profile>
+  </profiles>
+	
 	<dependencies>
 		<dependency>
 			<groupId>com.sun</groupId>
 			<artifactId>tools</artifactId>
 			<version>1.4.2</version>
 			<scope>system</scope>
-			<systemPath>${java.home}/../lib/tools.jar</systemPath>
+			<systemPath>${toolsjar}</systemPath>
 		</dependency>
 
 		<dependency>
@@ -86,11 +112,6 @@
 	</dependencies>
 
 	<repositories>
-		<repository>
-			<id>repos.zeroturnaround.com</id>
-			<name>repos.zeroturnaround.com</name>
-			<url>http://repos.zeroturnaround.com/maven2</url>
-		</repository>
 		<repository>
 			<id>openqa-releases</id>
 			<name>OpenQA Releases</name>
