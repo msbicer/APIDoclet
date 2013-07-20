@@ -1,6 +1,9 @@
 package com.model;
 
 public class Movie {
+	/**
+	 * Name of movie
+	 */
 	private String name;
 	private int year;
 	public String getName() {

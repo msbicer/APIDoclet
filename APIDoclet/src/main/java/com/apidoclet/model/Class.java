@@ -6,7 +6,6 @@ public class Class implements Element {
 	private String name;
 	private String qualifiedName;
 	private String module;
-	private String mapping = "";
 	private boolean controller;
 	private boolean webService;
 	
@@ -22,14 +21,6 @@ public class Class implements Element {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getMapping() {
-		return mapping;
-	}
-
-	public void setMapping(String mapping) {
-		this.mapping = mapping;
 	}
 
 	public boolean isController() {
@@ -99,7 +90,7 @@ public class Class implements Element {
 	@Override
 	public String toString() {
 		return "Class [name=" + name + ", qualifiedName=" + qualifiedName
-				+ ", module=" + module + ", mapping=" + mapping
+				+ ", module=" + module 
 				+ ", controller=" + controller 
 				+ ", webService=" + webService + ", members=" + members
 				+ ", endpoints=" + endpoints + ", requestMethods="

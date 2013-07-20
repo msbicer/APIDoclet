@@ -27,12 +27,10 @@ public class MovieController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "{name}/{param}", method = RequestMethod.GET)
 	public Movie getMovie(@PathVariable Movie name,
-			@PathVariable String testParam1,
-			@PathVariable("test2") Boolean testParam2,
-			@PathVariable(value="test3") Integer testParam3,
-			@RequestParam(required = true, value="test4") String testParam4,
+			@PathVariable("param") Boolean testParam,
+			@RequestParam(required = true, value="test4") String testParam2,
 			@RequestParam(required = true, defaultValue="test") String query, ModelMap model) {
 
 		model.addAttribute("movie", name);

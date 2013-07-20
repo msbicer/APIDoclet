@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Method implements Element {
 	private String name;
-	private String responseName;
 	private String responseType;
 	private String qualifiedResponseType;
 	private String responseDescription;
@@ -23,14 +22,6 @@ public class Method implements Element {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getResponseName() {
-		return responseName;
-	}
-
-	public void setResponseName(String responseName) {
-		this.responseName = responseName;
 	}
 
 	public String getResponseType() {
@@ -107,7 +98,7 @@ public class Method implements Element {
 
 	@Override
 	public String toString() {
-		return "Method [name=" + name + ", responseName=" + responseName
+		return "Method [name=" + name 
 				+ ", responseType=" + responseType + ", qualifiedResponseType="
 				+ qualifiedResponseType + ", responseDescription="
 				+ responseDescription + ", description=" + description
