@@ -99,9 +99,6 @@ public class MethodBuilder {
 					method.setMethods(Arrays.asList("GET", "POST"));
 				}
 
-			} else if ("org.springframework.web.bind.annotation.ResponseBody"
-					.equals(annotationName)) {
-				// TODO
 			}
 			// System.out.println(annotationName);
 		}

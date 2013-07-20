@@ -82,7 +82,7 @@
   <div class="newpage firstpage">
   	<table style="width:100%;height:100%">
   	<tr><td style="vertical-align:middle" valign="center" align="center">
-  		<h1>TEST API Dokümanı</h1>
+  		<h1>TEST API Document</h1>
   	</td></tr>
   	</table>
   </div>

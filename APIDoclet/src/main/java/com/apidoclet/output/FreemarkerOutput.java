@@ -28,67 +28,71 @@ public class FreemarkerOutput {
 
 	private String fileName;
 
-	public FreemarkerOutput(String fileName, Result result)
-			throws Exception {
+	public FreemarkerOutput(String fileName, Result result) throws Exception {
 		this.result = result;
 		this.fileName = fileName;
-		
+
 	}
 
 	public void write(String template) {
 		// parse our markup into an xml Document
 		try {
-			 /* Create and adjust the configuration */
-	        Configuration cfg = new Configuration();
-	        cfg.setObjectWrapper(new DefaultObjectWrapper());
-//	        cfg.setTemplateLoader(new FileSystemTemplateLoader());
-	        
-	        File file = new File(template);
-	        cfg.setDirectoryForTemplateLoading(file.getParentFile());
-	        /* ------------------------------------------------------------------- */    
-	        /* You usually do these for many times in the application life-cycle:  */    
-	                
-	        /* Get or create a template */
-	        Template temp = cfg.getTemplate(file.getName());
+			/* Create and adjust the configuration */
+			Configuration cfg = new Configuration();
+			cfg.setObjectWrapper(new DefaultObjectWrapper());
+			// cfg.setTemplateLoader(new FileSystemTemplateLoader());
 
-	        /* Create a data-model */
-	        Map root = new HashMap();
-	        
-	        root.put("classes", result.getClasses());
-	        root.put("models", result.getModels());
+			File file = new File(template);
+			cfg.setDirectoryForTemplateLoading(file.getParentFile());
+			/*
+			 * ------------------------------------------------------------------
+			 * -
+			 */
+			/*
+			 * You usually do these for many times in the application
+			 * life-cycle:
+			 */
 
-	        /* Merge data-model with template */
-	        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	        Writer out = new OutputStreamWriter(baos);
-	        temp.process(root, out);
-	        out.flush();
-			
-			DocumentBuilder builder = DocumentBuilderFactory.newInstance()
-					.newDocumentBuilder();
-			Document doc = builder.parse(new ByteArrayInputStream(baos.toByteArray()));
-			ITextRenderer renderer = new ITextRenderer();
-			
-//			
-//			System.out.println("==> "+FreemarkerOutput.class.getClassLoader().getResource("resources/fonts/").getFile());
-			File dir = new File(FreemarkerOutput.class.getClassLoader().getResource("resources/fonts/").getFile());
-//			System.out.println("1 ==> "+dir);
-//			System.out.println("2 ==> "+dir.listFiles());
-			for (File font:dir.listFiles()){
-				renderer.getFontResolver().addFont(
-						font.getCanonicalPath(), BaseFont.IDENTITY_H,
-						BaseFont.NOT_EMBEDDED);
+			/* Get or create a template */
+			Template temp = cfg.getTemplate(file.getName());
+
+			/* Create a data-model */
+			Map root = new HashMap();
+
+			root.put("classes", result.getClasses());
+			root.put("models", result.getModels());
+
+			if (fileName.endsWith(".pdf")) {
+				/* Merge data-model with template */
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				Writer out = new OutputStreamWriter(baos);
+				temp.process(root, out);
+				out.flush();
+				
+				DocumentBuilder builder = DocumentBuilderFactory.newInstance()
+						.newDocumentBuilder();
+				Document doc = builder.parse(new ByteArrayInputStream(baos
+						.toByteArray()));
+				ITextRenderer renderer = new ITextRenderer();
+
+				File dir = new File(FreemarkerOutput.class.getClassLoader()
+						.getResource("resources/fonts/").getFile());
+				for (File font : dir.listFiles()) {
+					renderer.getFontResolver().addFont(font.getCanonicalPath(),
+							BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+				}
+
+				renderer.setDocument(doc, null);
+				renderer.layout();
+				OutputStream os = new FileOutputStream(fileName);
+				renderer.createPDF(os);
+				os.close();
+			} else {
+				Writer out2 = new OutputStreamWriter(new FileOutputStream(
+						fileName));
+				temp.process(root, out2);
+				out2.flush();
 			}
-//			renderer.getFontResolver().addFontDirectory("resources/fonts", BaseFont.NOT_EMBEDDED);
-			
-			renderer.setDocument(doc, null);
-			renderer.layout();
-			OutputStream os = new FileOutputStream(fileName);
-			renderer.createPDF(os);
-			os.close();
-			
-			Writer out2 = new OutputStreamWriter(new FileOutputStream("test.html"));
-	        temp.process(root, out2);
-	        out2.flush();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
