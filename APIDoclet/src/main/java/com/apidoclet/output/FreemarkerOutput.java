@@ -40,18 +40,9 @@ public class FreemarkerOutput {
 			/* Create and adjust the configuration */
 			Configuration cfg = new Configuration();
 			cfg.setObjectWrapper(new DefaultObjectWrapper());
-			// cfg.setTemplateLoader(new FileSystemTemplateLoader());
 
 			File file = new File(template);
 			cfg.setDirectoryForTemplateLoading(file.getParentFile());
-			/*
-			 * ------------------------------------------------------------------
-			 * -
-			 */
-			/*
-			 * You usually do these for many times in the application
-			 * life-cycle:
-			 */
 
 			/* Get or create a template */
 			Template temp = cfg.getTemplate(file.getName());

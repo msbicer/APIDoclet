@@ -89,11 +89,6 @@ public class APIDocletTest {
 			}
 			rootDoc.options();
 			APIDoclet.start(rootDoc);
-			
-//			Iterator<String> it = Model.map.keySet().iterator();
-//			while (it.hasNext()){
-//				log.debug("==> "+Model.map.get(it.next()));
-//			}
 		}
 	}
 	
@@ -106,9 +101,6 @@ public class APIDocletTest {
         }
  
         public void write(char[] chars, int offset, int length) throws IOException {
-//            String s = new String(Arrays.copyOf(chars, length));
-//            if (!s.equals("\n"))
-//                log.log(level, s);
         }
  
         public void flush() throws IOException {}
