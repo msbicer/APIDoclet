@@ -28,3 +28,8 @@ For now, only Spring MVC 3+ is supported. Supported annotations are:
 
 ## Output Format
 Documentation requirements differ from project to project. Hence output must be configurable and flexible. APIDoclet can generate output in PDF and HTML formats. A template file must be provided for this purpose. Documentation is generated using [Freemarker](http://freemarker.org), [Flying Saucer](http://code.google.com/p/flying-saucer/) and [iText](http://itextpdf.com). Template must be in Freemarker format.
+
+## Sample Usage
+javadoc -output test.pdf -template templates/test.ftl -doclet APIDoclet ...
+
+For more details on using doclets, please check [Doclet overview page](http://docs.oracle.com/javase/6/docs/technotes/guides/javadoc/doclet/overview.html)
