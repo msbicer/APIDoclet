@@ -20,6 +20,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.apidoclet.builder.ClassBuilder;
+import com.apidoclet.builder.MethodBuilder;
 import com.apidoclet.model.Class;
 import com.apidoclet.model.Method;
 import com.apidoclet.model.Parameter;
@@ -30,6 +31,7 @@ import com.sun.tools.javac.util.ListBuffer;
 import com.sun.tools.javac.util.Options;
 import com.sun.tools.javadoc.JavadocTool;
 import com.sun.tools.javadoc.ModifierFilter;
+import com.sun.javadoc.MethodDoc;
 
 public class APIDocletTest {
 
@@ -74,7 +76,7 @@ public class APIDocletTest {
 		assertEquals("MovieController", klazz.getName());
 		assertEquals("com.controller.MovieController", klazz.getQualifiedName());
 		assertEquals("Movie", klazz.getModule());
-		assertTrue(klazz.isController());
+		assertTrue(klazz.isApi());
 		assertFalse(klazz.isWebService());
 
 		assertNotNull(klazz.getMembers());
@@ -102,7 +104,7 @@ public class APIDocletTest {
 		assertEquals("Movie", klazz.getName());
 		assertEquals("com.model.Movie", klazz.getQualifiedName());
 		assertNull(klazz.getModule());
-		assertFalse(klazz.isController());
+		assertFalse(klazz.isApi());
 		assertFalse(klazz.isWebService());
 
 		assertEquals(2, klazz.getMembers().size());
@@ -202,6 +204,33 @@ public class APIDocletTest {
 		assertEquals("test", param1_4.getDefaultValue());
 		assertEquals("Query String", param1_4.getDescription());
 		assertFalse(param1_4.isRequired());
+	}
+	
+	@Test
+	public void testIgnoreController(){
+		ClassDoc controller = rootDoc
+				.classNamed("com.controller.IgnoreController");
+		assertNotNull(controller);
+
+		Class klazz = ClassBuilder.build(controller);
+		assertNull(klazz);
+	}
+	
+	@Test
+	public void testIgnoreMethod(){
+		ClassDoc movieController = rootDoc
+				.classNamed("com.controller.MovieController");
+		assertNotNull(movieController);
+		MethodDoc[] methods = movieController.methods();
+		for (MethodDoc method:methods){
+			if ("dummy".equals(method.name())){
+				Method m = MethodBuilder.build(method, new Class());
+				assertNull(m);
+			} else if ("post".equals(method.name())) {
+				Method m = MethodBuilder.build(method, new Class());
+				assertNotNull(m);
+			}
+		}
 	}
 
 	final private Logger log = Logger.getLogger(APIDocletTest.class.getName());

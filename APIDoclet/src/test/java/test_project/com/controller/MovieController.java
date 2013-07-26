@@ -72,6 +72,10 @@ public class MovieController {
 	public void post(){
 	}
 	
+	/**
+	 * @ignore
+	 */
+	@RequestMapping(value="dummy")
 	public void dummy(){
 		
 	}

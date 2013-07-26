@@ -6,7 +6,7 @@ public class Class implements Element {
 	private String name;
 	private String qualifiedName;
 	private String module;
-	private boolean controller;
+	private boolean api;
 	private boolean webService;
 	
 	private List<Parameter> members;
@@ -21,14 +21,6 @@ public class Class implements Element {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public boolean isController() {
-		return controller;
-	}
-
-	public void setController(boolean controller) {
-		this.controller = controller;
 	}
 
 	public boolean isWebService() {
@@ -91,9 +83,17 @@ public class Class implements Element {
 	public String toString() {
 		return "Class [name=" + name + ", qualifiedName=" + qualifiedName
 				+ ", module=" + module 
-				+ ", controller=" + controller 
+				+ ", api=" + api 
 				+ ", webService=" + webService + ", members=" + members
 				+ ", endpoints=" + endpoints + ", requestMethods="
 				+ requestMethods + ", handlers=" + handlers + "]";
+	}
+
+	public boolean isApi() {
+		return api;
+	}
+
+	public void setApi(boolean api) {
+		this.api = api;
 	}
 }

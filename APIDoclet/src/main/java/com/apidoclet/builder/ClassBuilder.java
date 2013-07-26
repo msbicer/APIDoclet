@@ -21,7 +21,7 @@ public class ClassBuilder {
 
 		klazz.setName(classDoc.name());
 		klazz.setQualifiedName(classDoc.qualifiedName());
-		klazz.setController(false);
+		klazz.setApi(false);
 		klazz.setWebService(false);
 		klazz.setEndpoints(new ArrayList<String>());
 		
@@ -40,6 +40,8 @@ public class ClassBuilder {
 			for (Tag tag : tags) {
 				if ("@module".equals(tag.name())) {
 					klazz.setModule(tag.text());
+				} else if ("@ignore".equals(tag.name())){
+					return null;
 				}
 			}
 		}
@@ -51,7 +53,7 @@ public class ClassBuilder {
 			String annotationName = type.qualifiedName();
 			if ("org.springframework.stereotype.Controller"
 					.equals(annotationName)) {
-				klazz.setController(true);
+				klazz.setApi(true);
 			} else if ("org.springframework.web.bind.annotation.RequestMapping"
 					.equals(annotationName)) {
 				RequestMapping mapping = BuilderUtils
@@ -62,7 +64,7 @@ public class ClassBuilder {
 			}
 		}
 
-		if (klazz.isController()) {
+		if (klazz.isApi()) {
 			List<Method> methodList = new ArrayList<Method>();
 			MethodDoc[] methods = classDoc.methods();
 			for (int i = 0; i < methods.length; i++) {

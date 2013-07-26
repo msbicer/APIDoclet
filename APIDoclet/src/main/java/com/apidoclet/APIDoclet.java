@@ -46,10 +46,11 @@ public class APIDoclet {
 
 		for (int i = 0; i < classes.length; i++) {
 			Class klazz = ClassBuilder.build(classes[i]);
-
-			classMap.put(klazz.getQualifiedName(), klazz);
-			if (klazz.isController()) {
-				klazzes.add(klazz);
+			if (klazz!=null){
+				classMap.put(klazz.getQualifiedName(), klazz);
+				if (klazz.isApi()) {
+					klazzes.add(klazz);
+				}
 			}
 		}
 		return klazzes;

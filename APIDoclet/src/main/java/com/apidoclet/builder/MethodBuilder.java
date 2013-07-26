@@ -53,6 +53,8 @@ public class MethodBuilder {
 					method.setResponseExample(tag.text());
 				} else if ("@name".equals(tag.name())) {
 					method.setName(tag.text());
+				} else if ("@ignore".equals(tag.name())){
+					return null;
 				}
 			}
 		}

@@ -9,7 +9,7 @@
 		margin: 0.5in;
 		border: none;
 		padding: 1em;
-		background: #fff url('templates/global.logo') no-repeat right top;
+		background: #fff url('templates/logo.png') no-repeat right top;
 		background-size:202px 73px;
 		@top-center { content: element(header, last-except) }
 		@bottom-center { content: element(footer, last-except) }

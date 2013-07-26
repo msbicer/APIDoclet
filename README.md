@@ -7,11 +7,13 @@ Documentation is generated using Javadoc documentation and annotations. Thus sta
 
 ### Class level
 * **@module &lt;string&gt;** Entitle class with a module name
+* **@ignore** Do not include this class to documentation
 
 ### Method level
 * **@requestExample &lt;string&gt;** Provide an example request format for method
 * **@responseExample &lt;string&gt;** Provide an example return format for method
 * **@name &lt;string&gt;** Provide an alternative name for method
+* **@ignore** Do not include this method to documentation
 
 For now, only Spring MVC 3+ is supported. Supported annotations are:
 
