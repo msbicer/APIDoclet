@@ -1,7 +1,7 @@
 APIDoclet
 =========
 
-APIDoclet is a [Javadoc](http://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html) doclet for Java WEB APIs. Aim of this project is to be able to generate user-friendly API documentation with ease.
+APIDoclet is a [Javadoc](http://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html) doclet for Java WEB APIs. Aim of this project is to be able to generate user-friendly API documentation with ease. PDF and HTML outputs are supported.
 
 Documentation is generated using Javadoc documentation and annotations. Thus standard Java documentation format is enough. Although there are some extra useful Javadoc tags:
 
