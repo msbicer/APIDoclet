@@ -32,8 +32,9 @@ public class APIDoclet {
 
 		String output = readOption("-output", root.options());
 		String template = readOption("-template", root.options());
+		String resources = readOption("-resources", root.options());
 		try {
-			new FreemarkerOutput(output, result).write(template);
+			new FreemarkerOutput(output, resources, result).write(template);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -96,7 +97,7 @@ public class APIDoclet {
 	}
 
 	public static int optionLength(String option) {
-		if (option.equals("-output") || option.equals("-template")) {
+		if (option.equals("-output") || option.equals("-template") || option.equals("-resources")) {
 			return 2;
 		}
 		return 0;
@@ -115,7 +116,7 @@ public class APIDoclet {
 			}
 		}
 		if (!foundTemplateOption || !foundOutputOption) {
-			reporter.printError("Usage: javadoc -output test.pdf -template templates/test.ftl -doclet APIDoclet ...");
+			reporter.printError("Usage: javadoc -output test.pdf -template templates/test.ftl [-resources <resource_folder>] -doclet APIDoclet ...");
 		}
 		return foundTemplateOption && foundOutputOption;
 	}

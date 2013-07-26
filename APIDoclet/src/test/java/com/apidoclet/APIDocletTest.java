@@ -264,6 +264,7 @@ public class APIDocletTest {
 		ListBuffer<String[]> options = new ListBuffer<String[]>();
 		options.append(new String[] { "-output", outputPath });
 		options.append(new String[] { "-template", "templates/test.ftl" });
+		options.append(new String[] { "-resources", "resources/" });
 		try {
 
 			rootDoc = javadocTool.getRootDocImpl("", null, new ModifierFilter(

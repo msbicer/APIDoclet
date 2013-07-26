@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,11 +28,13 @@ public class FreemarkerOutput {
 	private Result result;
 
 	private String fileName;
+	
+	private String resourceFolder;
 
-	public FreemarkerOutput(String fileName, Result result) throws Exception {
+	public FreemarkerOutput(String fileName, String resources, Result result) throws Exception {
 		this.result = result;
 		this.fileName = fileName;
-
+		this.resourceFolder = resources;
 	}
 
 	public void write(String template) {
@@ -52,6 +55,7 @@ public class FreemarkerOutput {
 
 			root.put("classes", result.getClasses());
 			root.put("models", result.getModels());
+			root.put("resources", resourceFolder);
 
 			if (fileName.endsWith(".pdf")) {
 				/* Merge data-model with template */
@@ -66,12 +70,15 @@ public class FreemarkerOutput {
 						.toByteArray()));
 				ITextRenderer renderer = new ITextRenderer();
 
-//				File dir = new File(FreemarkerOutput.class.getClassLoader()
-//						.getResource("resources/fonts/").getFile());
-//				for (File font : dir.listFiles()) {
-//					renderer.getFontResolver().addFont(font.getCanonicalPath(),
-//							BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-//				}
+				if (resourceFolder!=null){
+					File fontsDir = new File(resourceFolder+"fonts/");
+					if (fontsDir!=null){
+						for (File font : fontsDir.listFiles()) {
+							renderer.getFontResolver().addFont(font.getCanonicalPath(),
+									BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+						}
+					}
+				}
 
 				renderer.setDocument(doc, null);
 				renderer.layout();
