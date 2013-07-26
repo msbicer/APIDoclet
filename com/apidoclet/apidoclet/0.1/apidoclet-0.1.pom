@@ -11,6 +11,8 @@
 		<org.springframework.version>3.1.0.RELEASE</org.springframework.version>
 		<output>/Users/sbicer/Desktop</output>
 		<github.global.server>github</github.global.server>
+		<github.repository>APIDoclet</github.repository>
+		<github.owner>msbicer</github.owner>
 	</properties>
 
 	<profiles>
@@ -142,7 +144,7 @@
 		<repository>
 			<id>github</id>
 			<name>GitHub ${project.artifactId} Repository</name>
-			<url>https://raw.github.com/msbicer/APIDoclet</url>
+			<url>https://raw.github.com/${github.owner}/${github.repository}</url>
 		</repository>
 	</distributionManagement>
 
@@ -235,8 +237,8 @@
 					<includes>
 						<include>**/*</include>
 					</includes>
-					<repositoryName>APIDoclet</repositoryName>      <!-- github repo name -->
-					<repositoryOwner>msbicer</repositoryOwner>    <!-- github username -->
+					<repositoryName>${github.repository}</repositoryName>      <!-- github repo name -->
+					<repositoryOwner>${github.owner}</repositoryOwner>    <!-- github username -->
 				</configuration>
 				<executions>
 					<!-- run site-maven-plugin's 'site' target as part of the build's normal 
