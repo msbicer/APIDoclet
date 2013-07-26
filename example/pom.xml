@@ -33,16 +33,16 @@
 				<configuration>
 					<doclet>com.apidoclet.APIDoclet</doclet>
 
-<!-- 					<docletPath>/Users/sbicer/Desktop/apidoclet.jar</docletPath> -->
 					<docletArtifact>
 						<groupId>com.apidoclet</groupId>
 						<artifactId>apidoclet</artifactId>
-						<version>0.3</version>
+						<version>1</version>
 					</docletArtifact>
 					<additionalparam>-output ${user.home}/test.pdf -template
 	${project.basedir}/templates/test.ftl -resources
 	${project.basedir}/resources/</additionalparam>
 					<useStandardDocletOptions>false</useStandardDocletOptions>
+					<show>private</show><!-- This is a must have value -->
 				</configuration>
 			</plugin>
 		</plugins>

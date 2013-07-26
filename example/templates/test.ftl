@@ -95,6 +95,13 @@
 	  	</#list>
 	  </#list>
 	  
+	  <li>
+	  <#list models?keys as key>
+	  	<#assign model=models[key] />
+	  	
+	  	<a href="#model-${model.qualifiedName}">${model.name}</a>
+	  </#list>
+	  </li>
   </div>
   
   <div class="newpage">
