@@ -66,12 +66,12 @@ public class FreemarkerOutput {
 						.toByteArray()));
 				ITextRenderer renderer = new ITextRenderer();
 
-				File dir = new File(FreemarkerOutput.class.getClassLoader()
-						.getResource("resources/fonts/").getFile());
-				for (File font : dir.listFiles()) {
-					renderer.getFontResolver().addFont(font.getCanonicalPath(),
-							BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-				}
+//				File dir = new File(FreemarkerOutput.class.getClassLoader()
+//						.getResource("resources/fonts/").getFile());
+//				for (File font : dir.listFiles()) {
+//					renderer.getFontResolver().addFont(font.getCanonicalPath(),
+//							BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+//				}
 
 				renderer.setDocument(doc, null);
 				renderer.layout();
