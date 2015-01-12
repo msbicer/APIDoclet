@@ -1,7 +1,4 @@
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
-/target
+target
+bin
+doclet_test.pdf
+.DS_Store
