@@ -214,7 +214,7 @@
 			<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
-				<version>0.8</version>
+				<version>0.9</version>
 				<configuration>
 					<message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
 					<noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
@@ -223,6 +223,7 @@
 					<includes>
 						<include>**/*</include>
 					</includes>
+					<force>true</force>
 					<repositoryName>${github.repository}</repositoryName>      <!-- github repo name -->
 					<repositoryOwner>${github.owner}</repositoryOwner>    <!-- github username -->
 				</configuration>
