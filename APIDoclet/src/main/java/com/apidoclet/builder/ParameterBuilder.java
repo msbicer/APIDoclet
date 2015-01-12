@@ -37,8 +37,13 @@ public class ParameterBuilder {
 			AnnotationTypeDoc type = ann.annotationType();
 			String annotationName = type.qualifiedName();
 			if (annotationName.equals("org.springframework.web.bind.annotation.PathVariable")
-					|| annotationName.equals("org.springframework.web.bind.annotation.RequestParam")){
+					|| annotationName.equals("org.springframework.web.bind.annotation.RequestParam")
+					|| annotationName.equals("org.springframework.web.bind.annotation.RequestHeader")){
 				isRequestParameter = true;
+				
+				if (annotationName.equals("org.springframework.web.bind.annotation.RequestHeader")){
+					parameter.setHeader(true);
+				}
 				
 				ElementValuePair[] values = ann.elementValues();
 				for (ElementValuePair pair:values){

@@ -11,7 +11,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.tools.JavaFileObject;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
@@ -25,13 +28,13 @@ import com.apidoclet.model.Class;
 import com.apidoclet.model.Method;
 import com.apidoclet.model.Parameter;
 import com.sun.javadoc.ClassDoc;
+import com.sun.javadoc.MethodDoc;
 import com.sun.javadoc.RootDoc;
 import com.sun.tools.javac.util.Context;
 import com.sun.tools.javac.util.ListBuffer;
 import com.sun.tools.javac.util.Options;
 import com.sun.tools.javadoc.JavadocTool;
 import com.sun.tools.javadoc.ModifierFilter;
-import com.sun.javadoc.MethodDoc;
 
 public class APIDocletTest {
 
@@ -269,7 +272,7 @@ public class APIDocletTest {
 
 			rootDoc = javadocTool.getRootDocImpl("", null, new ModifierFilter(
 					ModifierFilter.ALL_ACCESS), new ListBuffer<String>()
-					.toList(), options.toList(), false, subPackages.toList(),
+					.toList(), options.toList(), new ArrayList<JavaFileObject>(), false, subPackages.toList(),
 					new ListBuffer<String>().toList(), false, false, false);
 		} catch (Exception ex) {
 			throw new RuntimeException(ex);

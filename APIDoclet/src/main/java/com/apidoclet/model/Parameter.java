@@ -7,6 +7,7 @@ public class Parameter implements Element {
 	private String type;
 	private String qualifiedType;
 	private boolean required;
+	private boolean header;
 
 	public String getName() {
 		return name;
@@ -62,6 +63,14 @@ public class Parameter implements Element {
 				+ ", description=" + description + ", type=" + type
 				+ ", qualifiedType=" + qualifiedType + ", required=" + required
 				+ "]";
+	}
+
+	public boolean isHeader() {
+		return header;
+	}
+
+	public void setHeader(boolean header) {
+		this.header = header;
 	}
 
 	
