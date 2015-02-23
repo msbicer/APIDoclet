@@ -20,6 +20,7 @@ public class ClassBuilder {
 		Class klazz = new Class();
 
 		klazz.setName(classDoc.name());
+		klazz.setDescription(classDoc.commentText());
 		klazz.setQualifiedName(classDoc.qualifiedName());
 		klazz.setApi(false);
 		klazz.setWebService(false);

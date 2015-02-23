@@ -6,6 +6,7 @@ public class Class implements Element {
 	private String name;
 	private String qualifiedName;
 	private String module;
+	private String description;
 	private boolean api;
 	private boolean webService;
 	
@@ -95,5 +96,13 @@ public class Class implements Element {
 
 	public void setApi(boolean api) {
 		this.api = api;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
